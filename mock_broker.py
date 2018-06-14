@@ -22,7 +22,7 @@ def mock_plan():
         for memory in [512, 1024, 2048, 4096, 8192]:
             for disk in [8, 50, 100, 200]:
                 result.append({
-                    "name": "plan-%scpu-%sm-%sg-0gpu".format(cpu, memory, disk),
+                    "name": "plan-{}cpu-{}m-{}g-0gpu".format(cpu, memory, disk),
                     "id": "a61c75f24af95a9fe23ec9372a322915",
                     "description": "plan-100cpu-512m-8g-0gpu",
                     "metadata": {
