@@ -7,4 +7,4 @@ metadata:
 spec:
   relistBehavior: Duration
   relistRequests: 3
-  url: http://10.33.138.16:8989
+  url: http://dsp-mock-broker.default

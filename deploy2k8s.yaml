@@ -1,0 +1,57 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dsp-mock-broker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dsp-mock-broker
+  template:
+    metadata:
+      labels:
+        app: dsp-mock-broker
+    spec:
+      containers:
+      - name: dsp-mock-broker
+        image: harbor.geniusafc.com/docker.io/dsp-mock-broker_mock_broker:latest
+        env:
+        # If TZ is assigned, set the TZ value as the time zone
+        - name: TZ
+          value: Asia/Shanghai
+        volumeMounts:
+          - name: localtime
+            mountPath: /etc/localtime
+            readOnly: true
+          - name: zoneinfo
+            mountPath: /usr/share/zoneinfo
+            readOnly: true
+#        resources:
+#          requests:
+#            cpu: 100m
+#            memory: 100Mi
+#          limits:
+#            cpu: 500m
+#            memory: 250Mi
+      volumes:
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
+        - name: zoneinfo
+          hostPath:
+            path: /usr/share/zoneinfo
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: dsp-mock-broker
+  name: dsp-mock-broker
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 8989
+  selector:
+    app: dsp-mock-broker
