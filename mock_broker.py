@@ -18,18 +18,18 @@ app = Flask(__name__)
 
 def mock_plan():
     result = []
-    for cpu in [100, 500, 1000, 2000, 4000, 8000]:
-        for memory in [512, 1024, 2048, 4096, 8192]:
-            for disk in [8, 50, 100, 200]:
+    for cpu in [100, 500, 1000, 2000]:
+        for memory in [512, 1024, 2048, 4096]:
+            for disk in [50, ]:
                 result.append({
                     "name": "plan-{}cpu-{}m-{}g-0gpu".format(cpu, memory, disk),
-                    "id": "a61c75f24af95a9fe23ec9372a322915",
+                    "id": "plan-{}cpu-{}m-{}g-0gpu".format(cpu, memory, disk),
                     "description": "plan-100cpu-512m-8g-0gpu",
                     "metadata": {
                         "bullets": [
-                            "cpu:100cpu",
-                            "memory:512m",
-                            "storage:8g",
+                            "cpu:{}cpu".format(cpu),
+                            "memory:{}m".format(memory),
+                            "storage:{}g".format(disk),
                             "gpu:0gpu"
                         ],
                         "clustersize": "1",
