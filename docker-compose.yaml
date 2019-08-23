@@ -1,0 +1,4 @@
+mock_broker:
+  build: .
+  ports:
+    - 8989:8989
