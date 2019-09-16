@@ -24,7 +24,7 @@ def mock_plan():
                 result.append({
                     "name": "plan-{}cpu-{}m-{}g-0gpu".format(cpu, memory, disk),
                     "id": "plan-{}cpu-{}m-{}g-0gpu".format(cpu, memory, disk),
-                    "description": "plan-100cpu-512m-8g-0gpu",
+                    "description": "plan-{}cpu-{}m-{}g-0gpu".format(cpu, memory, disk),
                     "metadata": {
                         "bullets": [
                             "cpu:{}cpu".format(cpu),
